@@ -1,13 +1,11 @@
+import Link from "next/link";
+import Image from "next/image";
+import { SignInButton , UserButton, Show   } from "@clerk/nextjs";
+import NavItems from "@/components/NavItems";
 
-
-import Image from 'next/image'
-import Link from 'next/link'
-import NavItems from './NavItems'
-
-
-const Navebar = () => {
-  return (
-      <nav className="navbar">
+const Navbar = () => {
+    return (
+        <nav className="navbar">
             <Link href="/">
                 <div className="flex items-center gap-2.5 cursor-pointer">
                     <Image
@@ -20,17 +18,17 @@ const Navebar = () => {
             </Link>
             <div className="flex items-center gap-8">
                 <NavItems />
-                {/* <SignedOut>
+                 <Show when="signed-out">
                     <SignInButton>
                         <button className="btn-signin">Sign In</button>
                     </SignInButton>
-                </SignedOut>
-                <SignedIn>
-                    <UserButton />
-                </SignedIn> */}
+                </Show>
+               <Show when="signed-in">
+                  <UserButton />
+               </Show>
             </div>
         </nav>
-  )
+    )
 }
 
-export default Navebar
+export default Navbar
