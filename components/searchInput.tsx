@@ -1,4 +1,4 @@
- 'use client';
+'use client';
 
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useEffect, useState} from "react";
@@ -9,8 +9,8 @@ const SearchInput = () => {
   // to modify the search bar 
   // access the current pathname
     const pathname = usePathname();
-    const router = useRouter(); // to navigation 
-    const searchParams = useSearchParams(); // different from server component
+    const router = useRouter();
+    const searchParams = useSearchParams(); // different from server components 
     const query = searchParams.get('topic') || '';
 
     const [searchQuery, setSearchQuery] = useState('');
@@ -18,9 +18,7 @@ const SearchInput = () => {
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
             if(searchQuery) {
-              //  usually i use router.push (`/companions?topic=${searchQuery}`)
-
-              // this form jsmastry utility to modify the url query
+                //  usually i use router.push (`/companions?topic=${searchQuery}`)
                 const newUrl = formUrlQuery({
                     params: searchParams.toString(),
                     key: "topic",
@@ -38,8 +36,8 @@ const SearchInput = () => {
                     router.push(newUrl, { scroll: false });
                 }
             }
-        }, 500)
-    }, [searchQuery, router, searchParams, pathname]); //it will be called whenever the searchQuery .... changes
+        }, 1000)
+    }, [searchQuery, router, searchParams, pathname]);
 
     return (
         <div className="relative border border-black rounded-lg items-center flex gap-2 px-2 py-1 h-fit">
